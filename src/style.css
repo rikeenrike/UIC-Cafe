@@ -8,6 +8,28 @@ body{
   background-color:#FFEDF3;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+
+  --sb-track-color: #ffe3ec;
+  --sb-thumb-color: #ffbed3;
+  --sb-size: 12px;
+
+  scrollbar-color: var(--sb-thumb-color) 
+                   var(--sb-track-color);
+
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
 }
 
 .p-toast {

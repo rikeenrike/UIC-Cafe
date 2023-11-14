@@ -23,8 +23,8 @@ export const foodList = [
 
 export const HotCoffeesList =[
   { id: 1, name: 'Caffe Americano', price: 120 },
-  { id: 2, name: 'Caffe Latte' },
-  { id: 3, name: 'Coffee Cappucino' },
+  { id: 2, name: 'Caffe Latte' , price: 120 },
+  { id: 3, name: 'Coffee Cappucino' , price: 120 },
   { id: 4, name: 'Latte Macchiato' },
   { id: 5, name: 'Caffe Mocha' },
   { id: 6, name: 'Caffe Mocha' },

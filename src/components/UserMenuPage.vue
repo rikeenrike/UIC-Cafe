@@ -3,9 +3,13 @@ import { ref } from "vue";
 import { drinksList, foodList } from "../db/dummy_data.js";
 import router from '../router';
 
+
+const MainNavTab = ref('MENU');
+const SecNavTab = ref('Menu');
+
+
 const OnClickDrinks = (clicked) => {
     const route = router.options.routes.find((route) => route.name === clicked);
-    
     if (route) {
         router.push(route.path);
     } else {
@@ -21,24 +25,30 @@ const OnClickDrinks = (clicked) => {
         <div class="page">
             <nav class="main-nav">
                 <img src="../assets/logo.png" alt="logo" />
-                <div class="tab-container">
-                    <ul>MENU</ul>   
-                </div>                
-                <div class="tab-container">
+                <div class="tab-container" @click="MainNavTab = 'MENU'"  :class="{ active: MainNavTab === 'MENU' }">
+                    <ul>MENU</ul>
+                  </div>
+                
+                  <div class="tab-container" @click="MainNavTab = 'CART'" :class="{ active: MainNavTab === 'CART' }">
                     <ul>CART</ul>
-                </div>                
-                <div class="tab-container">
+                  </div>
+                
+                  <div class="tab-container" @click="MainNavTab = 'NOTIFICATIONS'" :class="{ active: MainNavTab === 'NOTIFICATIONS' }">
                     <ul>NOTIFICATIONS</ul>
-                </div>
+                  </div>
+
+                  <div class="logout">
+                    <Button label="Log Out" severity="danger" text raised />
+                  </div>
             </nav>
             <nav class="second-nav">
-                <div class="tab-container sec">
+                <div class="tab-container sec" @click="SecNavTab = 'Menu'" :class="{ active: SecNavTab === 'Menu'}">
                     <ul>Menu</ul>
                 </div>                
-                <div class="tab-container sec">
+                <div class="tab-container sec" @click="SecNavTab = 'Best Seller'" :class="{ active: SecNavTab === 'Best Seller'}">
                     <ul>Best Seller</ul>
                 </div>                
-                <div class="tab-container sec">
+                <div class="tab-container sec" @click="SecNavTab = 'History'" :class="{ active: SecNavTab === 'History'}">
                     <ul>History</ul>
                 </div>
             </nav>
@@ -117,7 +127,9 @@ const OnClickDrinks = (clicked) => {
     display: flex;
     align-items: center;
     padding-left: 50px;
+    padding-right: 50px;
     background-color: #FFEDF3;
+    gap: 20px;
     
 }
 
@@ -125,7 +137,8 @@ const OnClickDrinks = (clicked) => {
     grid-area: second-nav;
     display: flex;
     align-items: center;
-    padding-left: 140px;
+    padding-left: 160px;
+    gap: 20px;
     background-color: #FFBED3;
     box-shadow: inset 0px 5px 20px rgba(0, 0, 0, 0.2);
  }
@@ -155,12 +168,19 @@ const OnClickDrinks = (clicked) => {
  .tab-container{
     font-size: larger;
     font-weight: 700;
-    padding-left: 20px;
     display: flex;
     cursor: pointer;
     height: 100%;
     align-items: center;
     justify-content: center;
+    border-bottom: 4px solid transparent;
+}
+.tab-container.active{
+    border-bottom-color: #FF4384;
+  }
+
+.logout{
+    margin-left: auto;
 }
 
 img{
@@ -174,6 +194,11 @@ img{
 .sec{
     font-size: small;
     font-weight: 400;
+    border-bottom: 4px solid transparent;
+}
+
+.sec.active{
+    border-bottom-color: #FF4384;
 }
 
 /* SIDEBAR CSS */
@@ -191,6 +216,7 @@ img{
 .category-list ul{
     margin-bottom: 10px;
     cursor: pointer;
+    opacity: 0.7;
     transition: 0.1s;
 }
 
