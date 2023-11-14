@@ -49,10 +49,12 @@ const load = () => {
 <main>
     <div class="container"> 
         <Toast position="bottom-center" group="bc"></Toast>
-        <header>
-          <h1>UIC Cafe</h1>
-          <p>a pre-ordering service, convenience for UIC personnel </p>
-        </header> 
+        <div class="header">
+          <header>
+            <p>a pre-ordering service, convenience for UIC personnel </p>
+            <h1>UIC Cafe</h1>
+          </header> 
+        </div>
       <div class="login-container">
         <div class="login-box">
           <h6 class="login-text">Log in with your UIC account</h6>
@@ -73,18 +75,37 @@ const load = () => {
 
 <style scoped>
 .container{
-    width: 100vw;
-    height: 100vh;
-    padding: 0;
-    padding-top: 50px;
-    margin: 0 auto;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "header header header"
+  "login-container login-container login-container"
+  "login-container login-container login-container"
+  "footer footer footer";
+  height: 100vh;
+  
+}
 
-header{
+.login-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: login-container;
+}
+.footer{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  grid-area: footer;
+}
+
+.header{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  grid-area: header;
 }
 
 h1 {
@@ -112,17 +133,13 @@ p{
 }
  
 
-.login-container, .login-box{
+.login-box {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 60vh;
-  gap: 5px;
-}
-
-.login-box {
-  height: 40vh;
+  gap: 10px;
+  height: 320px;
   width: clamp(350px, 90vw , 450px);
   border-radius: 50px;
   background: #FFEDF3;
@@ -130,11 +147,6 @@ p{
              -20px -20px 60px #ffffff;
 }
 
-.footer{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
 
 #username, #login-b, :deep(.p-password-input){
   width: clamp(200px, 80vw , 400px);
