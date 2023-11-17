@@ -1,46 +1,25 @@
 <script setup>
 import { ref } from 'vue';
 import { useToast } from "primevue/usetoast";
-import router from '../router';
+import { users } from "../db/dummy_data.js";
 
 const toast = useToast();
 const id = ref('');
 const password = ref('');
-const hasValidationError = ref(false);
-const loading = ref(false);
-
-const users = [
-  { id: '1234', password: 'password123' },
-  { id: '5678', password: 'testpass' },
-  // Add more users as needed
-];
 
 
 const validate = () => {
   if (id.value === '' || password.value === '') {
-    hasValidationError.value = true;
     toast.add({ severity: 'error', summary: 'Error!', detail: 'Provide proper input!', group:'bc', life: 5000 });
   } else {
     const user = users.find((user) => user.id === id.value && user.password === password.value);
     if(user){
-      hasValidationError.value = false;
       toast.add({ severity: 'success', summary: 'Success!', detail: 'Login successful!', group:'bc', life: 5000 });
-      setTimeout(() => {
         router.push('/menu');
-      }, 2000);
     }else{
-    hasValidationError.value = false;
     toast.add({ severity: 'error', summary: 'Error!', detail: 'Invalid credentials!', group:'bc', life: 5000 });
     }
   } 
-};
-
-const load = () => {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-    validate();
-  }, 2000);
 };
 
 </script>
@@ -51,20 +30,18 @@ const load = () => {
         <Toast position="bottom-center" group="bc"></Toast>
         <div class="header">
           <header>
-            <p>a pre-ordering service, convenience for UIC personnel </p>
             <h1>UIC Cafe</h1>
+            <p>a pre-ordering service, convenience for UIC personnel </p>
           </header> 
         </div>
       <div class="login-container">
         <div class="login-box">
-          <h6 class="login-text">Log in with your UIC account</h6>
-          <InputText id="username" v-model="id" placeholder=" ID e.g. '1234'" />
-          <Password class="userpass" v-model="password" inputId="password" placeholder=" Password" toggleMask :feedback="false"/>
-          <Button id="login-b" type="button" label="Log in" icon="pi pi-sign-in" :loading="loading" @click="load" /> 
+          <InputText id="username" v-model="id" placeholder="ID e.g. '1234'" />
+          <Password class="userpass" v-model="password" inputId="password" placeholder="Password" toggleMask :feedback="false" @keyup.enter="validate"/>
+          <Button id="login-b" type="button" label="Log in" icon="pi pi-sign-in" @click="validate" /> 
         </div>
       </div>
       <div class="footer">
-        <img src="../assets/logo.png" alt="logo" />
         <p>UIC Cafe</p>
         <p>© 2021 UIC Cafe. All rights reserved.</p>
       </div>
@@ -74,30 +51,16 @@ const load = () => {
 </template>
 
 <style scoped>
-.container{
+.container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
   grid-template-areas: 
-  "header header header"
-  "login-container login-container login-container"
-  "login-container login-container login-container"
-  "footer footer footer";
+    "header header header"
+    "login-container login-container login-container"
+    "footer footer footer";
   height: 100vh;
-  
-}
-
-.login-container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-area: login-container;
-}
-.footer{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  grid-area: footer;
 }
 
 .header{
@@ -107,6 +70,21 @@ const load = () => {
   flex-direction: column;
   grid-area: header;
 }
+
+.login-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: login-container;
+}
+
+.footer{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  grid-area: footer;
+}
+
 
 h1 {
   font-size: clamp(50px, 18vw, 90px);
@@ -124,15 +102,6 @@ p{
   text-align: center;
 }
 
-.login-text {
-  font-size: 15px;
-  font-weight: 700;
-  color: rgba(0,0,0,.87);
-  margin: 5px auto;
-  text-align: center;
-}
- 
-
 .login-box {
   display: flex;
   align-items: center;
@@ -147,15 +116,10 @@ p{
              -20px -20px 60px #ffffff;
 }
 
-
-#username, #login-b, :deep(.p-password-input){
+#username, #login-b, :deep(.p-password-input), :deep(.p-password-input::placeholder), #username::placeholder{
   width: clamp(200px, 80vw , 400px);
   height: 60px;
-  border-radius: 15px;
   font-weight: 700 ;
-}
-
-#username::placeholder , :deep(.p-password-input::placeholder) {
   opacity: 0.8;
   color: rgba(0,0,0,.87);
 }

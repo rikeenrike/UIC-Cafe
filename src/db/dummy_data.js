@@ -30,3 +30,7 @@ export const HotCoffeesList =[
   { id: 6, name: 'Caffe Mocha' },
 ];
 
+export const users = [
+  { id: '1234', password: 'password123' },
+  { id: '5678', password: 'testpass' },
+];

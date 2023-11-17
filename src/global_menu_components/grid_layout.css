@@ -1,0 +1,52 @@
+/* GRID LAYOUT CSS */
+
+.page{
+   display: grid;
+   grid-template-columns: 0.8fr 1fr 1fr 1fr;
+   grid-template-rows: 0.13fr 0.09fr 1fr 1fr;
+   grid-template-areas: 
+   "main-nav main-nav main-nav main-nav"
+   "second-nav second-nav second-nav second-nav"
+   "sidebar main-content main-content main-content"
+   "sidebar main-content main-content main-content";
+   height: 100vh;
+   
+}
+/* GRID CSS */
+
+.main-nav{
+   grid-area: main-nav;
+   display: flex;
+   align-items: center;
+   padding-left: 20px;
+   padding-right: 50px;
+   background-color: #FFEDF3;
+   gap: 20px;
+   
+}
+
+.second-nav{
+   grid-area: second-nav;
+   display: flex;
+   align-items: center;
+   padding-left: 130px;
+   gap: 20px;
+   background-color: #FFBED3;
+   box-shadow: inset 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar{
+   grid-area: sidebar;
+   gap: 1px;
+   background-color: #FFEDF3;
+   height: fit-content;
+   margin: 30px 0px 0px 90px;
+}
+
+.main-content{
+   grid-area: main-content;
+   background-color: #FFEDF3;
+   height: fit-content;
+   margin: 30px 180px 30px 30px;
+}
+

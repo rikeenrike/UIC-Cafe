@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { useToast } from "primevue/usetoast";
 import './style.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
@@ -13,6 +14,7 @@ import router from './router';
 import Breadcrumb from 'primevue/breadcrumb';
 import Divider from 'primevue/divider';
 import Card from 'primevue/card';
+
 
 const app = createApp(App);
 app.use(PrimeVue, {ripple: true});

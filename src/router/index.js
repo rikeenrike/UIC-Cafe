@@ -1,8 +1,5 @@
 import {createRouter, createWebHistory} from "vue-router";
-
 import UserLoginPage from '../components/UserLoginPage.vue';
-import UserMenuPage from '../components/UserMenuPage.vue';
-import UM_HotCoffees from '../components/UM_HotCoffees.vue';
 
 const routes = [
     {
@@ -13,12 +10,17 @@ const routes = [
     {
         path: '/menu',
         name: 'UserMenuPage',
-        component: UserMenuPage,
+        component: () => import('../components/UserMenuPage.vue'),
     },
     {
-        path: '/menu/hotcoffees',
+        path: '/menu/drinks/hotcoffees',
         name: 'Hot Coffees',
-        component: UM_HotCoffees,
+        component: () => import('../components/category_drinks/UM_HotCoffees.vue'),
+    },
+    {
+        path: '/test',
+        name: 'test',
+        component: () => import('../components/test.vue'),
     },
 ]
 
