@@ -25,7 +25,6 @@ const MainNavTab = ref('MENU');
 </template>
 
 <style scoped>
-
 ul{
     padding: 0;
     margin: 0;

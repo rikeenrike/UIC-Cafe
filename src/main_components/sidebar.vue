@@ -2,14 +2,16 @@
 import { drinksList, foodList } from "../db/dummy_data.js";
 import router from '../router';
 const OnClickDrinks = (clicked) => {
-    const route = router.options.routes.find((route) => route.name === clicked);
-    if (route) {
-        router.push(route.path);
+    const routeName = clicked.toLowerCase().replace(/\s/g, ''); 
+    const mainPageRoute = router.options.routes.find(route => route.name === 'MainContent');
+    const childRoute = mainPageRoute.children.find(route => route.name === routeName);
+
+    if (childRoute) {
+        router.push(childRoute.path);
     } else {
         console.error(`Route not found for ${clicked}`);
     }
 }
-
 </script>
 
 <template>
@@ -42,7 +44,7 @@ const OnClickDrinks = (clicked) => {
 }
 
 .category-list ul{
-    margin-bottom: 10px;
+    margin: 10px;
     cursor: pointer;
     opacity: 0.7;
     transition: 0.1s;
@@ -52,16 +54,4 @@ const OnClickDrinks = (clicked) => {
     transform: scale(1.1);
 }
 
-.footer{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: auto;
-    text-align: center;
-  }
-
-.footer p {
-    margin: 0;
-    font-size: small;
-}
 </style>

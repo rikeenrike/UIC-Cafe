@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { useToast } from "primevue/usetoast";
 import { users } from "../db/dummy_data.js";
+import router from '../router';
+
 
 const toast = useToast();
 const id = ref('');
