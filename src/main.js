@@ -13,6 +13,9 @@ import router from './router';
 import Breadcrumb from 'primevue/breadcrumb';
 import Divider from 'primevue/divider';
 import Card from 'primevue/card';
+import Sidebar from 'primevue/sidebar';
+
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
 const app = createApp(App);
@@ -27,5 +30,6 @@ app.component('InputText', InputText);
 app.component('Password', Password);
 app.component('Button', Button); 
 app.component('Toast', Toast);     
+app.component('Sidebar', Sidebar);
 
 app.mount('#app');

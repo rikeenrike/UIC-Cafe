@@ -8,10 +8,7 @@ const SecNavTab = ref('Menu');
     <nav class="second-nav">
         <div class="tab-container sec" @click="SecNavTab = 'Menu'" :class="{ active: SecNavTab === 'Menu'}">
             <ul>Menu</ul>
-        </div>                
-        <div class="tab-container sec" @click="SecNavTab = 'Best Seller'" :class="{ active: SecNavTab === 'Best Seller'}">
-            <ul>Best Seller</ul>
-        </div>                
+        </div>                              
         <div class="tab-container sec" @click="SecNavTab = 'History'" :class="{ active: SecNavTab === 'History'}">
             <ul>History</ul>
         </div>
@@ -20,7 +17,6 @@ const SecNavTab = ref('Menu');
 
 <style scoped>
 .sec{
-    font-size: small;
     font-weight: 400;
     display: flex;
     cursor: pointer;

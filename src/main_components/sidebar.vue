@@ -1,13 +1,19 @@
 <script setup>
 import { drinksList, foodList } from "../db/dummy_data.js";
 import router from '../router';
-const OnClickDrinks = (clicked) => {
-    const routeName = clicked.toLowerCase().replace(/\s/g, ''); 
+const OnClickDrinks = (clicked,dynamicParam) => {
+
+    const params = dynamicParam.toLowerCase().replace(/\s/g, ''); 
     const mainPageRoute = router.options.routes.find(route => route.name === 'MainContent');
-    const childRoute = mainPageRoute.children.find(route => route.name === routeName);
+    const childRoute = mainPageRoute.children.find(route => route.name === clicked);
 
     if (childRoute) {
-        router.push(childRoute.path);
+        if (childRoute.path.includes(':')) {
+            const dynamicPath = childRoute.path.replace(/:id/, params);
+            router.push(dynamicPath);
+        } else {
+            router.push(childRoute.path);
+        }
     } else {
         console.error(`Route not found for ${clicked}`);
     }
@@ -20,7 +26,7 @@ const OnClickDrinks = (clicked) => {
             <ul>Drinks</ul>
         </div>
         <div class="category-list">
-            <ul v-for="drink in drinksList" :key="drink.id" @click="OnClickDrinks(drink.name)">{{ drink.name }}</ul>
+            <ul v-for="drink in drinksList" :key="drink.id" @click="OnClickDrinks('drinks',drink.name)">{{ drink.name }}</ul>
         </div>
         <div class="category-container">
             <ul>Foods</ul>

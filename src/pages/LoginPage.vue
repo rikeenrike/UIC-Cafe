@@ -33,7 +33,7 @@ const validate = () => {
         <div class="header">
           <header>
             <h1>UIC Cafe</h1>
-            <p>a pre-ordering service, convenience for UIC personnel </p>
+            <p>pre-order and pickup your donuts and drinks instantly!</p>
           </header> 
         </div>
       <div class="login-container">
@@ -45,7 +45,7 @@ const validate = () => {
       </div>
       <div class="footer">
         <p>UIC Cafe</p>
-        <p>© 2021 UIC Cafe. All rights reserved.</p>
+        <p>© 2023 UIC Cafe. All rights reserved.</p>
       </div>
     </div>
 </main>
@@ -70,6 +70,7 @@ const validate = () => {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 50px;
   grid-area: header;
 }
 
@@ -111,19 +112,15 @@ p{
   flex-direction: column;
   gap: 10px;
   height: 320px;
-  width: clamp(350px, 90vw , 450px);
-  border-radius: 50px;
-  background: #FFEDF3;
-  box-shadow:  20px 20px 60px #d9c9cf,
-             -20px -20px 60px #ffffff;
+  width: clamp(350px, 80vw , 450px);
+
 }
 
 #username, #login-b, :deep(.p-password-input), :deep(.p-password-input::placeholder), #username::placeholder{
   width: clamp(200px, 80vw , 400px);
-  height: 60px;
+  height: clamp(45px, 10vw , 60px);
   font-weight: 700 ;
   opacity: 0.8;
   color: rgba(0,0,0,.87);
 }
-
   </style>

@@ -3,14 +3,13 @@
 .page{
    display: grid;
    grid-template-columns: 0.8fr 1fr 1fr 1fr;
-   grid-template-rows: 0.13fr 0.09fr 1fr 1fr;
+   grid-template-rows: auto auto  1fr;
    grid-template-areas: 
    "main-nav main-nav main-nav main-nav"
    "second-nav second-nav second-nav second-nav"
    "sidebar main-content main-content main-content"
    "sidebar main-content main-content main-content";
-   height: 100vh;
-   
+   min-height: 100vh;
 }
 /* GRID CSS */
 
@@ -19,10 +18,9 @@
    display: flex;
    align-items: center;
    padding-left: 20px;
-   padding-right: 50px;
+   padding-right: 20px;
    background-color: #FFEDF3;
-   gap: 20px;
-   
+   height: 110px;
 }
 
 .second-nav{
@@ -32,7 +30,8 @@
    padding-left: 130px;
    gap: 20px;
    background-color: #FFBED3;
-   box-shadow: inset 0px 5px 20px rgba(0, 0, 0, 0.2);
+   height: 40px;
+   width: 100%;
 }
 
 .sidebar{
@@ -46,7 +45,84 @@
 .main-content{
    grid-area: main-content;
    background-color: #FFEDF3;
-   height: fit-content;
    margin: 30px 180px 30px 30px;
+   width: auto;
 }
 
+
+
+/* responsiveness */
+@media screen and (max-width: 1300px){
+   .page{
+      grid-template-columns: 0.8fr 1fr 1fr;
+      grid-template-rows: 0.07fr 0.02fr 1fr;
+      grid-template-areas: 
+      "main-nav main-nav main-nav"
+      "second-nav second-nav second-nav"
+      "main-content main-content main-content"
+      "main-content main-content main-content";
+   }
+
+   .main-content{
+      margin: 30px 30px 30px 30px;
+   }
+
+   .sidebar {
+      display: none;
+   }
+}
+
+@media screen and (max-width: 786px){
+   .page{
+      grid-template-columns: 0.8fr 1fr 1fr;
+      grid-template-rows: 0.13fr 0.05f 1fr;
+      grid-template-areas: 
+      "main-nav main-nav main-nav"
+      "second-nav second-nav second-nav"
+      "main-content main-content main-content"
+      "main-content main-content main-content";
+   }
+   .main-content{
+      margin: 30px 30px 30px 30px;
+   }
+
+   .sidebar {
+      display: none;
+   }
+}
+
+@media screen and (max-width: 650px){
+   .page{
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas: 
+      "main-nav main-nav"
+      "second-nav second-nav"
+      "main-content main-content"
+      "main-content main-content";
+   }
+
+   .main-content{
+      
+      margin: 5px;
+      margin-top: 10px;
+   }
+
+   .sidebar{
+      display: none;
+   }
+
+   .main-nav{
+      display: flex;
+      align-items: center;
+      font-size: 8px;
+      height: 70px;
+   }
+
+   .second-nav{
+      padding-left: 25px;
+      height: 40px;
+      font-size: 10px;
+   }
+   
+}
