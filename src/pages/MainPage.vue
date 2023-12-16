@@ -2,6 +2,8 @@
 import main_nav from "../main_components/main_nav.vue";
 import sub_nav from "../main_components/sub_nav.vue";
 import sidebar from "../main_components/sidebar.vue";
+document.title = 'UIC Cafe | Menu';
+
 </script>
 
 <template>

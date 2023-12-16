@@ -1,13 +1,15 @@
-<template>
-  
-</template>
+<script setup>
 
-<script>
-export default {
-
-}
 </script>
 
-<style>
+<template>
+    <main>
+        <div>
+        <ul>Notifs goes here</ul>
+        </div>       
+    </main>
+</template>
+
+<style scoped>
 
 </style>

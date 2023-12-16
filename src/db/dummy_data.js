@@ -1,4 +1,3 @@
-// dummyData.js
 export const drinksList = [
   { id: 1, name: 'Hot Coffees' },
   { id: 2, name: 'Flavored Coffees' },
@@ -98,6 +97,12 @@ export const drinksLibrary = [
     ],
   },
 ];
+
+export const notifications = [
+  { id: 1, title: 'Order #1', message: 'Your order is ready for pickup', date: '2021-09-01', time: '12:00:00' },
+  { id: 2, title: 'Order #2', message: 'Your order is ready for pickup', date: '2021-09-01', time: '12:00:00' },
+  { id: 3, title: 'Order #3', message: 'Your order is ready for pickup', date: '2021-09-01', time: '12:00:00' },
+]
 
 export const users = [
   { id: '1234', password: 'password123' },

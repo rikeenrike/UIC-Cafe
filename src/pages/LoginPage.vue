@@ -4,6 +4,7 @@ import { useToast } from "primevue/usetoast";
 import { users } from "../db/dummy_data.js";
 import router from '../router';
 
+document.title = 'UIC Cafe | Login';
 
 const toast = useToast();
 const id = ref('');

@@ -1,13 +1,20 @@
-<template>
-  
-</template>
+<script setup>
+document.title = 'UIC Cafe | Best Sellers ✨';
 
-<script>
-export default {
-
-}
 </script>
 
-<style>
+<template>
+    <main>
+        <div class="page">
+            <p>
+                <h1>Best Sellers</h1>
+                <p>Coming soon...</p>
+            </p>
+        </div>
+    </main>
+</template>
 
+
+<style scoped>
+@import url('../main_css/grid_layout.css');
 </style>

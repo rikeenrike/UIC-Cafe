@@ -13,6 +13,7 @@ const routes = [
     path: '/',
     name: 'LoginPage',
     component: LoginPage,
+    meta: { title: 'Login | UIC Cafe' }
   },
   {
     path: '/menu',
@@ -22,15 +23,19 @@ const routes = [
       {
         path: '',
         name: 'MenuPage',
-        component: () => import('../main_components/main_content.vue'), 
+        component: () => import('../main_components/main_content.vue'),
       },
       {
         name: 'drinks',
         path: '/menu/drinks/:id',
         component: () => import('../pages/ViewItems.vue'),
       },
-
     ],
+  },
+  {
+    name: 'BestSellersPage',
+    path: '/bestsellers',
+    component: () => import('../pages/BestSellersPage.vue'),
   },
   {
     path: '/about',
@@ -46,11 +51,6 @@ const routes = [
     path: '/history',
     name: 'HistoryPage',
     component: () => import('../pages/HistoryPage.vue'),
-  },
-  {
-    path: '/bestsellers',
-    name: 'BestSellersPage',
-    component: () => import('../pages/BestSellersPage.vue'),
   },
   {
     path: '/cart',

@@ -4,25 +4,21 @@ import { useRoute } from "vue-router";
 import { drinksLibrary } from "../db/dummy_data.js";
 
 const route = useRoute();
+const destinationId = computed(() => { return route.params.id;});
+const destination = computed(() => { return drinksLibrary.find(drink => drink.name === destinationId.value);});
+const home = ref({ icon: 'pi pi-home', route: '/menu'});
 
-const destinationId = computed(() => {
-    return route.params.id;
-});
-
-const destination = computed(() => {
-    return drinksLibrary.find(drink => drink.name === destinationId.value);
-});
-
-const home = ref({
-    icon: 'pi pi-home',
-    route: '/menu'
-});
 const items = computed(() => {
-    return [
-        { label: 'Drinks' }, 
-        { label: destination.value.header } 
-    ];
+    return [ { label: 'Drinks' }, { label: destination.value.header } ];
 });
+
+const visible = ref(false);
+const selectedDrink = ref(null);
+
+const openDialog = (drink) => {
+  selectedDrink.value = drink;
+  visible.value = true;
+};
 </script>
 
 <template>
@@ -48,13 +44,18 @@ const items = computed(() => {
         <ul>{{ destination.header }}</ul>
     </div>
     <div class="category-items">
-        <Card v-for="card in destination.items" :key="card.id">
+        <Card v-for="card in destination.items" @click="openDialog(card)" :key="card.id" >
             <template #header>
                 <img alt="user header" src="../assets/coffeeimg.webp" class="imgitem" />
             </template>
             <template #title>{{ card.name }}</template>
             <template #content><p>{{ 'P ' + card.price}}</p></template>
         </Card>
+        <Dialog v-model:visible="visible" modal header="Header" :style="{ width: '50vw' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+            <p>
+                You selected: {{ selectedDrink.name }}
+            </p>
+        </Dialog>
     </div>
     <div class="bag-container">
         <Button icon="pi pi-shopping-bag" text raised rounded aria-label="Filter"/>
@@ -63,6 +64,7 @@ const items = computed(() => {
 </template>
 
 <style scoped>
+
 @import url('../main_css/grid_layout.css');
 @import url('../main_css/main_content.css');
 </style>
