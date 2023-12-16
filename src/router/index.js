@@ -5,7 +5,6 @@ import Notifications from "../pages/Notifications.vue";
 import AboutPage from "../pages/AboutPage.vue";
 import HistoryPage from "../pages/HistoryPage.vue";
 import BestSellersPage from "../pages/BestSellersPage.vue";
-import Page404 from "../pages/Page404.vue";
 import CartPage from "../pages/CartPage.vue";
 
 const routes = [
@@ -30,18 +29,19 @@ const routes = [
         path: '/menu/drinks/:id',
         component: () => import('../pages/ViewItems.vue'),
       },
+      {
+        name: 'BestSellersPage',
+        path: '/bestsellers',
+        component: () => import('../pages/BestSellersPage.vue'),
+      },
+      {
+      path: '/about',
+      name: 'AboutPage',
+      component: () => import('../pages/AboutPage.vue'),
+      },
     ],
   },
-  {
-    name: 'BestSellersPage',
-    path: '/bestsellers',
-    component: () => import('../pages/BestSellersPage.vue'),
-  },
-  {
-    path: '/about',
-    name: 'AboutPage',
-    component: () => import('../pages/AboutPage.vue'),
-  },
+
   {
     path: '/notifications',
     name: 'Notifications',
@@ -57,11 +57,6 @@ const routes = [
     name: 'CartPage',
     component: () => import('../pages/CartPage.vue'),
   },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'Page404',
-    component: () => import('../pages/Page404.vue'),
-  },  
 ];
 
 

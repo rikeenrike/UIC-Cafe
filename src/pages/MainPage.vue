@@ -12,7 +12,7 @@ document.title = 'UIC Cafe | Menu';
             <main_nav class="main-nav"/>
             <sub_nav class="second-nav"/>
             <sidebar class="sidebar"/>
-            <router-view class="main-content" />
+            <router-view/>
         </div>
     </main>
 </template>

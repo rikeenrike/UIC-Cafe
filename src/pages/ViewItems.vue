@@ -7,7 +7,7 @@ const route = useRoute();
 const destinationId = computed(() => { return route.params.id;});
 const destination = computed(() => { return drinksLibrary.find(drink => drink.name === destinationId.value);});
 const home = ref({ icon: 'pi pi-home', route: '/menu'});
-
+const value = ref(0);
 const items = computed(() => {
     return [ { label: 'Drinks' }, { label: destination.value.header } ];
 });
@@ -55,6 +55,13 @@ const openDialog = (drink) => {
             <p>
                 You selected: {{ selectedDrink.name }}
             </p>
+            <div class="card flex justify-content-center">
+                <InputNumber v-model="value" showButtons buttonLayout="vertical" style="width: 4rem"
+                decrementButtonClassName="p-button-secondary" incrementButtonClassName="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" />
+            </div>
+            <template #footer>
+                <Button label="Confirm" icon="pi pi-check" @click="visible = false" />
+            </template>
         </Dialog>
     </div>
     <div class="bag-container">
