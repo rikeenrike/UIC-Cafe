@@ -1,28 +1,52 @@
 <script setup>
 import { ref, computed } from "vue";
+import { useToast } from "primevue/usetoast";
 import { useRoute } from "vue-router";
-import { drinksLibrary } from "../db/dummy_data.js";
+import { drinksLibrary, UserOrder } from "../db/dummy_data.js";
+import router from '../router';
 
 const route = useRoute();
 const destinationId = computed(() => { return route.params.id;});
 const destination = computed(() => { return drinksLibrary.find(drink => drink.name === destinationId.value);});
 const home = ref({ icon: 'pi pi-home', route: '/menu'});
-const value = ref(0);
+const value3 = ref(1);
 const items = computed(() => {
     return [ { label: 'Drinks' }, { label: destination.value.header } ];
 });
 
 const visible = ref(false);
 const selectedDrink = ref(null);
+const toast = useToast();
 
-const openDialog = (drink) => {
-  selectedDrink.value = drink;
-  visible.value = true;
+const order = ref(UserOrder);
+
+
+const addItem = (drink) => {
+  if (!order.value.find((item) => item.name === drink.name)) {
+    const newId = order.value.length > 0 ? Math.max(...order.value.map((c) => c.id)) + 1 : 1;
+    const newItem = {
+      id: newId,
+      name: drink.name,
+      price: drink.price,
+      quantity: 1,
+      total: drink.price,
+    };
+    order.value.push(newItem);
+    toast.add({ severity: 'success', summary: 'Drink selected!', detail: drink.name, group:'bc', life: 1000 });
+  }else{
+    toast.add({ severity: 'error', summary: 'Drink already selected!', detail: drink.name, group:'bc', life: 1000 });
+  }
 };
+
+
+
+
+
 </script>
 
 <template>
     <div class="main-content">
+        <Toast position="bottom-center" group="bc"></Toast>
         <div class="imghead">
             <img src="../assets/logo2.png" alt="logo"/>
         </div>
@@ -44,34 +68,27 @@ const openDialog = (drink) => {
         <ul>{{ destination.header }}</ul>
     </div>
     <div class="category-items">
-        <Card v-for="card in destination.items" @click="openDialog(card)" :key="card.id" >
+        <Card v-for="card in destination.items" @click="addItem(card)" :key="card.idw" >
             <template #header>
                 <img alt="user header" src="../assets/coffeeimg.webp" class="imgitem" />
             </template>
             <template #title>{{ card.name }}</template>
-            <template #content><p>{{ 'P ' + card.price}}</p></template>
+            <template #content><p>{{ '₱ ' + card.price}}</p></template>
         </Card>
-        <Dialog v-model:visible="visible" modal header="Header" :style="{ width: '50vw' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
-            <p>
-                You selected: {{ selectedDrink.name }}
-            </p>
-            <div class="card flex justify-content-center">
-                <InputNumber v-model="value" showButtons buttonLayout="vertical" style="width: 4rem"
-                decrementButtonClassName="p-button-secondary" incrementButtonClassName="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" />
-            </div>
-            <template #footer>
-                <Button label="Confirm" icon="pi pi-check" @click="visible = false" />
-            </template>
-        </Dialog>
     </div>
     <div class="bag-container">
-        <Button icon="pi pi-shopping-bag" text raised rounded aria-label="Filter"/>
+        <Button @click="router.push('/cart')" icon="pi pi-shopping-bag" text raised rounded aria-label="Filter" />
     </div>
-    </div>
+</div>
 </template>
 
 <style scoped>
 
 @import url('../main_css/grid_layout.css');
 @import url('../main_css/main_content.css');
+
+.input-number {
+    width: 4rem;
+}
+
 </style>

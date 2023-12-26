@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import Notifications from '../pages/Notifications.vue';
 import router from '../router';
 
 const MainNavTab = ref('');
@@ -37,6 +36,11 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', checkScreenWidth);
 });
+
+const test = () => {
+  console.log('test');
+};
+
 </script>
 
 
@@ -58,14 +62,10 @@ onBeforeUnmount(() => {
                 <ul>BEST SELLERS</ul>
               </div>
 
-              <div class="tab-container" @click="tabstyle('/about');" :class="{ active: MainNavTab === '3' }">
+              <div class="tab-container" @click="tabstyle('/about');  router.push('/about');" :class="{ active: MainNavTab === '3' }">
                 <ul>ABOUT</ul>
               </div>
 
-
-              <div class="tab-container" @click="toggle">
-                <ul>NOTIFICATION</ul>
-              </div>
               <div class="logout">
                 <Button icon="pi pi-sign-out" severity="danger" text rounded aria-label="Cancel"  @click = "router.push('/');"/>
               </div>
@@ -109,6 +109,10 @@ onBeforeUnmount(() => {
     }
 
   .sidenav{
+    margin-left: auto;
+  }
+
+  .logout{
     margin-left: auto;
   }
 

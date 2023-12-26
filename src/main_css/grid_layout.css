@@ -1,5 +1,4 @@
 /* GRID LAYOUT CSS */
-
 .page{
    display: grid;
    grid-template-columns: 0.8fr 1fr 1fr 1fr;
@@ -11,6 +10,19 @@
    "sidebar main-content main-content main-content";
    min-height: 100vh;
 }
+
+.page-full {
+   display: grid;
+   grid-template-columns: 0.8fr 1fr 1fr 1fr;
+   grid-template-rows: auto auto  1fr;
+   grid-template-areas: 
+     "main-nav main-nav main-nav main-nav"
+     "second-nav second-nav second-nav second-nav"
+     "main-content main-content main-content main-content"
+     "main-content main-content main-content main-content";
+     min-height: 100vh;
+ }
+
 /* GRID CSS */
 
 .main-nav{

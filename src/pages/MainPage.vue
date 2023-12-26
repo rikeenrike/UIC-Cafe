@@ -2,16 +2,25 @@
 import main_nav from "../main_components/main_nav.vue";
 import sub_nav from "../main_components/sub_nav.vue";
 import sidebar from "../main_components/sidebar.vue";
-document.title = 'UIC Cafe | Menu';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
+
+const pageClass = computed(() => {
+  return (route.path === '/bestsellers' || route.path === '/about' || route.path === '/myorders') ? 'page-full' : 'page';
+});
+const showSidebar = computed(() => {
+  return pageClass.value !== 'page-full';
+});
 </script>
 
 <template>
     <main>
-        <div class="page">
+        <div :class="pageClass">
             <main_nav class="main-nav"/>
             <sub_nav class="second-nav"/>
-            <sidebar class="sidebar"/>
+            <sidebar class="sidebar" v-if="showSidebar"/>
             <router-view/>
         </div>
     </main>

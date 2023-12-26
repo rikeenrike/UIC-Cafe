@@ -1,11 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginPage from "../pages/LoginPage.vue";
 import MainPage from "../pages/MainPage.vue";
-import Notifications from "../pages/Notifications.vue";
-import AboutPage from "../pages/AboutPage.vue";
-import HistoryPage from "../pages/HistoryPage.vue";
-import BestSellersPage from "../pages/BestSellersPage.vue";
-import CartPage from "../pages/CartPage.vue";
+
 
 const routes = [
   {
@@ -35,27 +31,27 @@ const routes = [
         component: () => import('../pages/BestSellersPage.vue'),
       },
       {
-      path: '/about',
-      name: 'AboutPage',
-      component: () => import('../pages/AboutPage.vue'),
+        path: '/about',
+        name: 'About',
+        component: () => import('../pages/AboutPage.vue')
+      },
+      {
+        path: '/myorders',
+        name: 'HistoryPage',
+        component: () => import('../pages/HistoryPage.vue'),
       },
     ],
   },
 
   {
-    path: '/notifications',
-    name: 'Notifications',
-    component: () => import('../pages/Notifications.vue'),
-  },
-  {
-    path: '/history',
-    name: 'HistoryPage',
-    component: () => import('../pages/HistoryPage.vue'),
-  },
-  {
     path: '/cart',
     name: 'CartPage',
     component: () => import('../pages/CartPage.vue'),
+  },
+  {
+    path: '/cart/confirmed',
+    name: 'ConfirmationPage',
+    component: () => import('../pages/ConfirmationPage.vue'),
   },
 ];
 

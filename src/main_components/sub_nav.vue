@@ -1,16 +1,33 @@
 <script setup>
-import { ref } from 'vue';
-const SecNavTab = ref('Menu');
+import { ref, onMounted, onBeforeUnmount  } from 'vue';
+import router from '../router';
+
+const SecNavTab = ref('');
+
+
+const tabstyle = (selectedTab) => {
+  if (selectedTab.includes('/menu')) {
+    SecNavTab.value = 'Menu';
+  } else if (selectedTab.includes('/myorders')) {
+    SecNavTab.value = 'History';
+  } 
+};
+
+onMounted(() => {
+  tabstyle(router.currentRoute.value.path);
+});
+
+
 </script>
 
 
 <template>
     <nav class="second-nav">
-        <div class="tab-container sec" @click="SecNavTab = 'Menu'" :class="{ active: SecNavTab === 'Menu'}">
+        <div class="tab-container sec" @click="tabstyle('/menu'); router.push('/menu');" :class="{ active: SecNavTab === 'Menu'}">
             <ul>Menu</ul>
         </div>                              
-        <div class="tab-container sec" @click="SecNavTab = 'History'" :class="{ active: SecNavTab === 'History'}">
-            <ul>History</ul>
+        <div class="tab-container sec" @click="tabstyle('/myorders'); router.push('/myorders');" :class="{ active: SecNavTab === 'History'}">
+            <ul>My Orders</ul>
         </div>
     </nav>
 </template>

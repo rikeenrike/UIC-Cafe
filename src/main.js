@@ -16,16 +16,19 @@ import Card from 'primevue/card';
 import Sidebar from 'primevue/sidebar';
 import OverlayPanel from 'primevue/overlaypanel';
 import Dialog from 'primevue/dialog';
-import InputNumber from 'primevue/inputnumber';
+import ConfirmDialog from 'primevue/confirmdialog';
+import ConfirmationService from 'primevue/confirmationservice';
+import Tooltip from 'primevue/tooltip';
 
-                
 
 const app = createApp(App);
 app.use(PrimeVue, {ripple: true});
 app.use(ToastService);
 app.use(router);
+app.use(ConfirmationService);
 
-app.component('InputNumber', InputNumber);
+app.directive('tooltip', Tooltip);
+app.component('ConfirmDialog', ConfirmDialog);
 app.component('Dialog', Dialog);
 app.component('OverlayPanel', OverlayPanel);
 app.component('Card', Card);

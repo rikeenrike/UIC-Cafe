@@ -1,18 +1,19 @@
 <script setup>
-document.title = 'UIC Cafe | Best Sellers ✨';;
+
 </script>
 
 <template>
-  <main>
-    <div class="page">
-      <div>
+    <div class="main-content edit">
         <h1>Best Sellers</h1>
         <p>Coming soon...</p>
-      </div>
     </div>
-  </main>
 </template>
 
 <style scoped>
-@import url('../main_css/grid_layout.css');
+.edit{
+    color: #FF4384;
+    font-size: 3rem;
+    text-align: center;
+}
+
 </style>
