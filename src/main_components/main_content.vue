@@ -23,34 +23,49 @@ if (childRoute) {
 
 <template>
 <div class="main-content">
-        <ul>Menu</ul> 
+    <!-- Menu Title -->
+    <ul>Menu</ul> 
+        <Divider />
+    <!-- Title Drinks -->
+        <div class="categories">
+            <ul>Drinks</ul>
+        </div>
+    <!-- Drink Cards Below  -->
+        <div class="category-items" >
+
+            <Card v-for="card in drinksList" :key="card.id" @click="OnClickDrinks('drinks',card.name)">
+                <template #header>
+                    <img alt="user header" src="../assets/coffeeimg.webp" class="imgitem" />
+                </template>
+                <template #title>{{ card.name }}</template>
+            </Card>
+            
+        </div>
+
     <Divider />
-    <div class="categories">
-        <ul>Drinks</ul>
-    </div>
-    <div class="category-items" >
-        <Card v-for="card in drinksList" :key="card.id" @click="OnClickDrinks('drinks',card.name)">
-            <template #header>
-                <img alt="user header" src="../assets/coffeeimg.webp" class="imgitem" />
-            </template>
-            <template #title>{{ card.name }}</template>
-        </Card>
-    </div>
-    <Divider />
+
+    <!-- Title "Foods" -->
     <div class="categories">
         <ul>Foods</ul>
     </div>
+
+    <!-- Food Cards Below (no content yet) -->
     <div class="category-items" >
+
         <Card v-for="card in foodList" :key="card.id">
             <template #header>
                 <img alt="user header" src="../assets/coffeeimg.webp" class="imgitem" />
             </template>
             <template #title>{{ card.name}}</template>
         </Card>
+
     </div>
+
+    <!-- Cart Button Below -->
     <div class="bag-container">
-        <Button icon="pi pi-shopping-bag" text raised rounded aria-label="Filter"/>
+        <Button @click="router.push('/cart');" icon="pi pi-shopping-bag" text raised rounded aria-label="Filter"/>
     </div>
+    
 </div>
 </template>
 

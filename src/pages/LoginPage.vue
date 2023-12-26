@@ -33,7 +33,8 @@ const validate = () => {
         <div class="header">
           <header>
             <h1>UIC Cafe</h1>
-            <p>pre-order and pickup your donuts and drinks instantly!</p>
+            <p>order online & pick-up when ready!</p>
+            <p>(DEVELOPMENT - PROTOTYPE)</p>
           </header> 
         </div>
       <div class="login-container">

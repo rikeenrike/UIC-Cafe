@@ -14,15 +14,23 @@ import Breadcrumb from 'primevue/breadcrumb';
 import Divider from 'primevue/divider';
 import Card from 'primevue/card';
 import Sidebar from 'primevue/sidebar';
-
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import OverlayPanel from 'primevue/overlaypanel';
+import Dialog from 'primevue/dialog';
+import ConfirmDialog from 'primevue/confirmdialog';
+import ConfirmationService from 'primevue/confirmationservice';
+import Tooltip from 'primevue/tooltip';
 
 
 const app = createApp(App);
 app.use(PrimeVue, {ripple: true});
 app.use(ToastService);
 app.use(router);
+app.use(ConfirmationService);
 
+app.directive('tooltip', Tooltip);
+app.component('ConfirmDialog', ConfirmDialog);
+app.component('Dialog', Dialog);
+app.component('OverlayPanel', OverlayPanel);
 app.component('Card', Card);
 app.component('Divider', Divider);
 app.component('Breadcrumb', Breadcrumb);
